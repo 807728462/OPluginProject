@@ -9,7 +9,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.oyf.plugin.R;
 import com.oyf.plugin.manager.PluginManager;
 import com.oyf.plugin.utils.ArouterUtils;
 import com.oyf.plugininterface.core.ActivityInterface;

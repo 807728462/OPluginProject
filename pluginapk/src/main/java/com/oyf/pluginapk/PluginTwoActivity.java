@@ -9,5 +9,4 @@ public class PluginTwoActivity extends BasePluginActivity {
         return R.layout.activity_plugin_two;
     }
 
-
 }

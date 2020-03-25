@@ -5,8 +5,8 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 
-import com.oyf.pluginapk.base.BasePluginBroadcastReceiver;
 import com.oyf.pluginapk.base.BasePluginActivity;
+import com.oyf.pluginapk.base.BasePluginBroadcastReceiver;
 
 import java.util.HashMap;
 import java.util.Map;
