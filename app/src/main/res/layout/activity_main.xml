@@ -10,13 +10,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="加载插件"
-        android:onClick="loadPlugin"/>
+        android:onClick="loadPlugin"
+        android:text="加载插件" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="跳转插件界面"
-        android:onClick="startPluginActivity"/>
+        android:onClick="startPluginActivity"
+        android:text="跳转插件界面" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startServiceClick"
+        android:text="开始service"
+        android:visibility="gone" />
 
 </LinearLayout>

@@ -8,4 +8,6 @@ public class PluginTwoActivity extends BasePluginActivity {
     public int getLayoutId() {
         return R.layout.activity_plugin_two;
     }
+
+
 }

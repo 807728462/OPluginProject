@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A0E797"
+    android:background="#C4C6C4"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:text="我是插件的第一个activity"
         android:textSize="30dp" />
 
@@ -15,5 +15,130 @@
         android:id="@+id/bt_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#ffffff"
         android:text="跳转第二个插件界面" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt_receiver_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册第一个广播" />
+
+            <Button
+                android:id="@+id/bt_send_receiver_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送第一个广播" />
+
+            <Button
+                android:id="@+id/bt_unreceiver_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消注册第一个广播" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt_receiver_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册第二个广播" />
+
+            <Button
+                android:id="@+id/bt_send_receiver_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送第二个广播" />
+
+            <Button
+                android:id="@+id/bt_unreceiver_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消注册第二个广播" />
+
+            <Button
+                android:id="@+id/bt_unreceiver_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消所有广播" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt_start_service_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="启动第一个服务" />
+
+            <Button
+                android:id="@+id/bt_pause_service_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="停止第一个服务中的循环" />
+
+            <Button
+                android:id="@+id/bt_stop_service_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂停第一个服务" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt_start_service_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="启动第二个服务" />
+
+            <Button
+                android:id="@+id/bt_pause_service_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="停止第二个服务中的循环" />
+
+            <Button
+                android:id="@+id/bt_stop_service_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂停第二个服务" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

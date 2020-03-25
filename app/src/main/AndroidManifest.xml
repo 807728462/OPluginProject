@@ -19,7 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProxyActivity" />
+        <activity android:name=".proxy.ProxyActivity" />
+
+        <service android:name=".proxy.ProxyService" />
+
     </application>
 
 </manifest>

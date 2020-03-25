@@ -30,4 +30,5 @@ public interface ActivityInterface {
     void setContentView(int resId);
 
     void startActivity(Intent intent);
+
 }
