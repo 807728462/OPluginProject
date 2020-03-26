@@ -1,17 +1,22 @@
 package com.oyf.pluginapk;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 
-import com.oyf.pluginapk.base.BasePluginActivity;
-import com.oyf.pluginapk.base.BasePluginBroadcastReceiver;
+import androidx.core.view.KeyEventDispatcher;
+
+import com.oyf.pluginapk.base.BaseApkPluginActivity;
+import com.oyf.plugininterface.base.BasePluginActivity;
+import com.oyf.plugininterface.base.BasePluginBroadcastReceiver;
+import com.oyf.plugininterface.utils.ArouterUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PluginMainActivity extends BasePluginActivity {
+public class PluginMainActivity extends BaseApkPluginActivity {
     private static final String TAG = BasePluginActivity.class.getSimpleName();
     private static final String ACTION_ONE = "plugin_one_receiver";
     private static final String ACTION_TWO = "plugin_two_receiver";
@@ -40,6 +45,7 @@ public class PluginMainActivity extends BasePluginActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity, PluginTwoActivity.class);
+                intent.putExtra(ArouterUtils.KEY_APK_NAME, getApkName());
                 startActivity(intent);
             }
         });
@@ -161,6 +167,16 @@ public class PluginMainActivity extends BasePluginActivity {
             public void onClick(View v) {
                 mTwoService = new Intent(mActivity, PluginTwoService.class);
                 stopService(mTwoService);
+            }
+        });
+
+        findViewById(R.id.bt_go_login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClassName("com.oyf.login", "com.oyf.login.LoginActivity");
+                intent.putExtra(ArouterUtils.KEY_APK_NAME, "login-debug.apk");
+                startActivity(intent);
             }
         });
     }

@@ -4,7 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.util.Log;
 
-import com.oyf.pluginapk.base.BasePluginService;
+import com.oyf.plugininterface.base.BasePluginService;
 
 /**
  * @创建者 oyf
@@ -26,10 +26,10 @@ public class PluginTwoService extends BasePluginService {
             public void run() {
                 while (mPlaying) {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(3000);
                     } catch (Exception e) {
                     }
-                    Log.d(TAG, "PluginTwoService.start=====" + str);
+                    Log.d(TAG, "Two-PluginTwoService.start=====" + str);
                 }
             }
         }).start();

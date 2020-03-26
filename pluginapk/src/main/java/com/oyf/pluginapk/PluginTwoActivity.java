@@ -1,8 +1,8 @@
 package com.oyf.pluginapk;
 
-import com.oyf.pluginapk.base.BasePluginActivity;
+import com.oyf.pluginapk.base.BaseApkPluginActivity;
 
-public class PluginTwoActivity extends BasePluginActivity {
+public class PluginTwoActivity extends BaseApkPluginActivity {
 
     @Override
     public int getLayoutId() {

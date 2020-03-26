@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_login_receiver_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册第一个广播" />
+
+        <Button
+            android:id="@+id/bt_login_send_receiver_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送第一个广播" />
+
+        <Button
+            android:id="@+id/bt_login_unreceiver_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消注册第一个广播" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_login_start_service_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="启动第一个服务" />
+
+        <Button
+            android:id="@+id/bt_login_pause_service_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="停止第一个服务中的循环" />
+
+        <Button
+            android:id="@+id/bt_login_stop_service_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂停第一个服务" />
+    </LinearLayout>
+
+
+</LinearLayout>

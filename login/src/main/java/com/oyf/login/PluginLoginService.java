@@ -1,4 +1,4 @@
-package com.oyf.pluginapk;
+package com.oyf.login;
 
 import android.app.Service;
 import android.content.Intent;
@@ -14,11 +14,11 @@ import com.oyf.plugininterface.base.BasePluginService;
  * @创建时间 2020/3/25 14:19
  * @描述
  **/
-public class PluginOneService extends BasePluginService {
+public class PluginLoginService extends BasePluginService {
 
-    private static final String TAG = PluginOneService.class.getSimpleName();
-    public static final String KEY_ONE_DATA = "KEY_ONE_DATA";
-    public static final String KEY_ONE_DATA_PAUSE = "KEY_ONE_DATA_PAUSE";
+    private static final String TAG = PluginLoginService.class.getSimpleName();
+    public static final String KEY_LOGIN_DATA = "KEY_LOGIN_DATA";
+    public static final String KEY_LOGIN_DATA_PAUSE = "KEY_LOGIN_DATA_PAUSE";
     private boolean mPlaying = false;
     private String str = "";
 
@@ -32,18 +32,18 @@ public class PluginOneService extends BasePluginService {
                         Thread.sleep(3000);
                     } catch (Exception e) {
                     }
-                    Log.d(TAG, "PluginOneService.start+" + str);
+                    Log.d(TAG, "LoginService.start+" + str);
                 }
             }
         }).start();
-        Log.d(TAG, "PluginOneService.start");
+        Log.d(TAG, "LoginService.start");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String one_data = intent.getStringExtra(KEY_ONE_DATA);
-        Log.d(TAG, "PluginOneService.start=" + one_data);
-        boolean one_data_pause = intent.getBooleanExtra(KEY_ONE_DATA_PAUSE, false);
+        String one_data = intent.getStringExtra(KEY_LOGIN_DATA);
+        Log.d(TAG, "LoginService.onStartCommand=" + one_data);
+        boolean one_data_pause = intent.getBooleanExtra(KEY_LOGIN_DATA_PAUSE, false);
         str = one_data_pause + "";
         return Service.START_STICKY;
     }

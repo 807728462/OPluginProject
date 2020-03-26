@@ -1,4 +1,4 @@
-package com.oyf.pluginapk.base;
+package com.oyf.plugininterface.base;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.oyf.plugininterface.BuildConfig;
 import com.oyf.plugininterface.core.ActivityInterface;
+import com.oyf.plugininterface.utils.ArouterUtils;
 
 /**
  * @创建者 oyf
@@ -114,11 +116,13 @@ public abstract class BasePluginActivity extends Activity implements ActivityInt
     /**************************************处理服务*************************************************************************/
     @Override
     public ComponentName startService(Intent service) {
+        service.putExtra(ArouterUtils.KEY_APK_NAME, getApkName());
         return mActivity.startService(service);
     }
 
     @Override
     public boolean stopService(Intent name) {
+        name.putExtra(ArouterUtils.KEY_APK_NAME, getApkName());
         return mActivity.stopService(name);
     }
 
@@ -145,4 +149,5 @@ public abstract class BasePluginActivity extends Activity implements ActivityInt
     }
 
     public abstract int getLayoutId();
+    public abstract String getApkName();
 }

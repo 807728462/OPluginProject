@@ -9,7 +9,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.oyf.plugin.manager.PluginManager;
-import com.oyf.plugin.utils.ArouterUtils;
+import com.oyf.plugininterface.utils.ArouterUtils;
 import com.oyf.plugininterface.core.ServiceInterface;
 
 import java.util.HashMap;
@@ -46,10 +46,11 @@ public class ProxyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         String className = intent.getStringExtra(ArouterUtils.KEY_CLASS_NAME);
+        String apkName = intent.getStringExtra(ArouterUtils.KEY_APK_NAME);
         //先从缓存中取是否有，因为一个service可以start多次，只有在第一次的时候调用onCreate
         ServiceInterface serviceInterface = mServiceInterfaceMap.get(className);
         if (null == serviceInterface) {
-            serviceInterface = createServiceInterface(className);
+            serviceInterface = createServiceInterface(apkName, className);
             if (null != serviceInterface) {
                 serviceInterface.onCreate();
                 serviceInterface.onStartCommand(intent, flags, startId);
@@ -84,13 +85,14 @@ public class ProxyService extends Service {
     /**
      * 创建一个ServiceInterface    代理service
      *
+     * @param apkName
      * @param className
      * @return
      */
-    private ServiceInterface createServiceInterface(String className) {
+    private ServiceInterface createServiceInterface(String apkName, String className) {
         ServiceInterface serviceInterface = null;
         try {
-            Class<?> pluginClass = PluginManager.getInstance().getDexClassLoader().loadClass(className);
+            Class<?> pluginClass = PluginManager.getInstance().getDexClassLoader(apkName).loadClass(className);
             serviceInterface = (ServiceInterface) pluginClass.newInstance();
         } catch (Exception e) {
 

@@ -13,14 +13,16 @@ import com.oyf.plugin.manager.PluginManager;
 import com.oyf.plugin.proxy.ProxyActivity;
 import com.oyf.plugin.proxy.ProxyService;
 import com.oyf.plugininterface.OPathUtils;
+import com.oyf.plugininterface.utils.ArouterUtils;
 
 import java.io.File;
 
-import static com.oyf.plugin.utils.ArouterUtils.KEY_CLASS_NAME;
+import static com.oyf.plugininterface.utils.ArouterUtils.KEY_CLASS_NAME;
 
 public class MainActivity extends AppCompatActivity {
 
     private String mPluginApkPath = "pluginapk-debug.apk";
+    private String mLoginApkPath = "login-debug.apk";
 
     @Override
     protected void onStart() {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PluginManager.getInstance().loadApk(this, mPluginApkPath);
         loadPlugin(null);
     }
 
@@ -60,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadPlugin(View view) {
-        PluginManager.getInstance().loadApk(this, mPluginApkPath);
+        //PluginManager.getInstance().loadApk(this, mPluginApkPath);
+        PluginManager.getInstance().loadApk(this, mLoginApkPath);
     }
 
 
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager.GET_ACTIVITIES);
         ActivityInfo activityInfo = packageArchiveInfo.activities[0];
         Intent intent = new Intent(this, ProxyActivity.class);
+        intent.putExtra(ArouterUtils.KEY_APK_NAME, mPluginApkPath);
         intent.putExtra(KEY_CLASS_NAME, activityInfo.name);
         startActivity(intent);
     }
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     public void startServiceClick(View view) {
         Intent intent = new Intent();
         intent.setClass(this, ProxyService.class);
+        intent.putExtra(ArouterUtils.KEY_APK_NAME, mPluginApkPath);
         startService(intent);
     }
 }

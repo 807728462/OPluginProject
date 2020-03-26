@@ -1,4 +1,4 @@
-package com.oyf.pluginapk.base;
+package com.oyf.plugininterface.base;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

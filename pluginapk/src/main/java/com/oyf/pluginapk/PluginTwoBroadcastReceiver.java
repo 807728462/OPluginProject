@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.oyf.pluginapk.base.BasePluginBroadcastReceiver;
+import com.oyf.plugininterface.base.BasePluginBroadcastReceiver;
 
 /**
  * @创建者 oyf

@@ -10,9 +10,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.oyf.plugin.manager.PluginManager;
-import com.oyf.plugin.utils.ArouterUtils;
+import com.oyf.plugininterface.utils.ArouterUtils;
 import com.oyf.plugininterface.core.ActivityInterface;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -25,7 +26,8 @@ import java.util.Set;
  **/
 public class ProxyActivity extends Activity {
 
-    private String className = "";
+    private String mApkName = "";
+    private String mClassName = "";
     private ActivityInterface mActivityInterface;
 
     /**
@@ -39,20 +41,36 @@ public class ProxyActivity extends Activity {
 
     @Override
     public ClassLoader getClassLoader() {
-        return PluginManager.getInstance().getDexClassLoader();
+        return PluginManager.getInstance().getDexClassLoader(mApkName);
     }
-
+/*
     @Override
     public Resources getResources() {
-        return PluginManager.getInstance().getResources();
+        return PluginManager.getInstance().getResources(getIntent().getStringExtra(ArouterUtils.KEY_APK_NAME));
+    }*/
+
+    /**
+     * 根据不同包名去替换Resources
+     */
+    private void replaceResouces() {
+        try {
+            Class<?> contextThemeWrapperClass = Class.forName("android.view.ContextThemeWrapper");
+            Field mResourcesField = contextThemeWrapperClass.getDeclaredField("mResources");
+            mResourcesField.setAccessible(true);
+            mResourcesField.set(this, PluginManager.getInstance().getResources(mApkName));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        className = getIntent().getStringExtra(ArouterUtils.KEY_CLASS_NAME);
-        if (TextUtils.isEmpty(className)) {
+        mApkName = getIntent().getStringExtra(ArouterUtils.KEY_APK_NAME);
+        replaceResouces();
+        mClassName = getIntent().getStringExtra(ArouterUtils.KEY_CLASS_NAME);
+        if (TextUtils.isEmpty(mClassName) || TextUtils.isEmpty(mApkName)) {
+            finish();
             return;
         }
         //初始化真正的activity
@@ -102,7 +120,7 @@ public class ProxyActivity extends Activity {
     private void initClass(Bundle savedInstanceState) {
         try {
             //根据全路径加载activity的class
-            Class<?> pluginActivityClass = getClassLoader().loadClass(className);
+            Class<?> pluginActivityClass = getClassLoader().loadClass(mClassName);
             //强转换为activity的接口
             mActivityInterface = (ActivityInterface) pluginActivityClass.newInstance();
             //手动的控制activity的生命周期
@@ -136,7 +154,7 @@ public class ProxyActivity extends Activity {
         String receiverName = receiver.getClass().getName();
         ProxyBroadcaseReceiver proxyBroadcaseReceiver = mProxyBroadcaseReceiverMap.get(receiverName);
         if (null == proxyBroadcaseReceiver) {
-            ProxyBroadcaseReceiver mProxyBroadcaseReceiver = new ProxyBroadcaseReceiver(receiverName);
+            ProxyBroadcaseReceiver mProxyBroadcaseReceiver = new ProxyBroadcaseReceiver(mApkName, receiverName);
             mProxyBroadcaseReceiverMap.put(receiverName, mProxyBroadcaseReceiver);
             return super.registerReceiver(mProxyBroadcaseReceiver, filter);
         } else {
