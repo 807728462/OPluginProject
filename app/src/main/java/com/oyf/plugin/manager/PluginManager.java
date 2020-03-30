@@ -15,7 +15,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import dalvik.system.DexClassLoader;
@@ -23,7 +22,7 @@ import dalvik.system.DexClassLoader;
 /**
  * @创建者 oyf
  * @创建时间 2020/3/24 11:28
- * @描述
+ * @描述  使用代理式插件化
  **/
 public class PluginManager {
     private final static String TAG = PluginManager.class.getSimpleName();

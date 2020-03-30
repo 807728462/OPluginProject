@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.oyf.plugin.manager.HookManager;
 import com.oyf.plugin.manager.PluginManager;
 import com.oyf.plugin.proxy.ProxyActivity;
 import com.oyf.plugin.proxy.ProxyService;
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     public void loadPlugin(View view) {
         //PluginManager.getInstance().loadApk(this, mPluginApkPath);
         PluginManager.getInstance().loadApk(this, mLoginApkPath);
+
+        HookManager.getInstance().hookAMS(this);
     }
 
 
@@ -86,5 +89,10 @@ public class MainActivity extends AppCompatActivity {
         intent.setClass(this, ProxyService.class);
         intent.putExtra(ArouterUtils.KEY_APK_NAME, mPluginApkPath);
         startService(intent);
+    }
+
+    public void startTest(View view) {
+        Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
     }
 }
