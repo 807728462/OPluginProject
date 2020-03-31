@@ -25,10 +25,17 @@
         android:onClick="startServiceClick"
         android:text="开始service"
         android:visibility="gone" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="startTest"
         android:text="去test界面" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startPluginTest"
+        android:text="去插件的test界面" />
 
 </LinearLayout>

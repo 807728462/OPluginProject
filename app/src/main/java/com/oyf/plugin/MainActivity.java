@@ -22,9 +22,6 @@ import static com.oyf.plugininterface.utils.ArouterUtils.KEY_CLASS_NAME;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String mPluginApkPath = "pluginapk-debug.apk";
-    private String mLoginApkPath = "login-debug.apk";
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -34,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PluginManager.getInstance().loadApk(this, mPluginApkPath);
         loadPlugin(null);
     }
 
@@ -65,21 +61,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadPlugin(View view) {
         //PluginManager.getInstance().loadApk(this, mPluginApkPath);
-        PluginManager.getInstance().loadApk(this, mLoginApkPath);
 
-        HookManager.getInstance().hookAMS(this);
     }
-
 
     public void startPluginActivity(View view) {
         PackageManager packageManager = getPackageManager();
-        File apkFile = new File(OPathUtils.getRootDir() + File.separator + mPluginApkPath);
+        File apkFile = new File(OPathUtils.getRootDir() + File.separator + APP.mPluginApkPath);
         PackageInfo packageArchiveInfo = packageManager.getPackageArchiveInfo(
                 apkFile.getAbsolutePath(),
                 PackageManager.GET_ACTIVITIES);
         ActivityInfo activityInfo = packageArchiveInfo.activities[0];
         Intent intent = new Intent(this, ProxyActivity.class);
-        intent.putExtra(ArouterUtils.KEY_APK_NAME, mPluginApkPath);
+        intent.putExtra(ArouterUtils.KEY_APK_NAME, APP.mPluginApkPath);
         intent.putExtra(KEY_CLASS_NAME, activityInfo.name);
         startActivity(intent);
     }
@@ -87,12 +80,18 @@ public class MainActivity extends AppCompatActivity {
     public void startServiceClick(View view) {
         Intent intent = new Intent();
         intent.setClass(this, ProxyService.class);
-        intent.putExtra(ArouterUtils.KEY_APK_NAME, mPluginApkPath);
+        intent.putExtra(ArouterUtils.KEY_APK_NAME, APP.mPluginApkPath);
         startService(intent);
     }
 
     public void startTest(View view) {
         Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
+    }
+
+    public void startPluginTest(View view) {
+        Intent intent = new Intent();
+        intent.setClassName("com.oyf.pluginapk", "com.oyf.pluginapk.PluginTestActivity");
         startActivity(intent);
     }
 }
