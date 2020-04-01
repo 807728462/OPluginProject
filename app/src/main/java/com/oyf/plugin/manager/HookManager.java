@@ -46,14 +46,14 @@ public class HookManager {
         }
         return instance;
     }
-
+    /****************************************Hook式我们的activity************************************************************************/
 
     /**
      * startActivity的时候，进行替换我们注册过的activity
      *
      * @param context
      */
-    public void hook26AMS(final Context context) {
+    public void hookAMS(final Context context) {
         try {
             //拿到我们需要hook的接口
             Class<?> iActivityManagerClass = Class.forName("android.app.IActivityManager");
@@ -156,13 +156,13 @@ public class HookManager {
             Class<?> dexPathListClass = Class.forName("dalvik.system.DexPathList");
             Field dexElementsField = dexPathListClass.getDeclaredField("dexElements");
             dexElementsField.setAccessible(true);
-            //获取系统的pathlist
+            //1.获取系统的pathlist
             PathClassLoader pathClassLoader = (PathClassLoader) context.getClassLoader();
             Field pathListField = pathClassLoader.getClass().getSuperclass().getDeclaredField("pathList");
             pathListField.setAccessible(true);
             Object pathList = pathListField.get(context.getClassLoader());
             Object dexElements = dexElementsField.get(pathList);
-            //加载插件中的dex
+            //2.加载插件中的dex，获取插件中的pathList
             String apkPath = OPathUtils.getRootDir() + File.separator + apkName;
             DexClassLoader pluginClassLoader = new DexClassLoader(apkPath,
                     OPathUtils.getOptimizedDirectory(context), null, context.getClassLoader());
@@ -171,7 +171,7 @@ public class HookManager {
             int length = Array.getLength(dexElements);
             int pluginLength = Array.getLength(dexElementsPlugin);
             int sumDexLeng = length + pluginLength;
-
+            //合并系统的跟插件的pathList
             Object allDexElements = Array.newInstance(dexElementsPlugin.getClass().getComponentType(), sumDexLeng);
 
             for (int i = 0; i < sumDexLeng; i++) {
@@ -213,6 +213,13 @@ public class HookManager {
         return null;
     }
 
+    /**
+     * hook式，加载插件的资源文件
+     *
+     * @param context
+     * @param assetManager
+     * @return
+     */
     public Resources loadPluginResource(Context context, AssetManager assetManager) {
         try {
             return new Resources(assetManager, context.getResources().getDisplayMetrics(), context.getResources().getConfiguration());
@@ -222,31 +229,5 @@ public class HookManager {
         return null;
     }
 
- /*   public void loadPluginResource(Context context, String apkName, Resources resources, AssetManager assetManager) {
-        try {
-            String apkPath = OPathUtils.getRootDir() + File.separator + apkName;
-            assetManager = AssetManager.class.newInstance();
-            Method addAssetPathMethod = assetManager.getClass().getDeclaredMethod("addAssetPath", String.class);
-            addAssetPathMethod.setAccessible(true);
-            addAssetPathMethod.invoke(assetManager, apkPath);
-
-
-            Class apkAsstesClass = Class.forName("android.content.res.ApkAssets");
-            @SuppressLint("SoonBlockedPrivateApi") Method loadFromPathMethod = apkAsstesClass.getDeclaredMethod("loadFromPath", String.class);
-            Object apkAssets = loadFromPathMethod.invoke(null, apkPath);
-
-            Object pluginAssets = Array.newInstance(apkAsstesClass, 1);
-            Array.set(pluginAssets, 0, apkAssets);
-
-            // 实例化此方法 final StringBlock[] ensureStringBlocks()
-            Method setApkAssetsMethod = assetManager.getClass().getDeclaredMethod("setApkAssets", pluginAssets.getClass(), boolean.class);
-            setApkAssetsMethod.setAccessible(true);
-            setApkAssetsMethod.invoke(assetManager, pluginAssets, false);
-
-            resources = new Resources(assetManager, context.getResources().getDisplayMetrics(), context.getResources().getConfiguration());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 
 }
