@@ -24,15 +24,18 @@ public class APP extends Application {
     public void onCreate() {
         super.onCreate();
         try {
-            PluginManager.getInstance().loadApk(this, mPluginApkPath);
-            PluginManager.getInstance().loadApk(this, mLoginApkPath);
+            //PluginManager.getInstance().loadApk(this, mPluginApkPath);
+            //PluginManager.getInstance().loadApk(this, mLoginApkPath);
 
            /* HookManager.getInstance().hookAMS(this);
             HookManager.getInstance().hookActivityThread(this);
             HookManager.getInstance().loadPluginDex(this, mPluginApkPath);
             mAssetManager = HookManager.getInstance().loadPluginAssetManager(mPluginApkPath);
             mResources = HookManager.getInstance().loadPluginResource(this, mAssetManager);*/
-           
+
+            mResources = HookManager.getInstance().loadPluginResource(this, mAssetManager);
+            LoadedApkManager.getInstance().hookAMS(this);
+            LoadedApkManager.getInstance().hookHandler();
             LoadedApkManager.getInstance().hookLoadedApk(this, mPluginApkPath);
         } catch (Exception e) {
             e.printStackTrace();

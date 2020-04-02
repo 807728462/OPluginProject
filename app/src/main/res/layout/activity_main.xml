@@ -37,5 +37,10 @@
         android:layout_height="wrap_content"
         android:onClick="startPluginTest"
         android:text="去插件的test界面" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startPluginLoadedapkTest"
+        android:text="去插件Loadedapk的test界面" />
 
 </LinearLayout>

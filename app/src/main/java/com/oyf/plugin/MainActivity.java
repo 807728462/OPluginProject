@@ -94,4 +94,10 @@ public class MainActivity extends AppCompatActivity {
         intent.setClassName("com.oyf.pluginapk", "com.oyf.pluginapk.PluginTestActivity");
         startActivity(intent);
     }
+
+    public void startPluginLoadedapkTest(View view) {
+        Intent intent = new Intent();
+        intent.setClassName("com.oyf.pluginapk", "com.oyf.pluginapk.PluginLoadedApkActivity");
+        startActivity(intent);
+    }
 }

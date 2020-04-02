@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PluginTestActivity" />
+        <activity
+            android:name=".PluginTestActivity"
+            android:exported="true" />
 
         <receiver android:name=".PluginOneBroadcastReceiver">
             <intent-filter>
