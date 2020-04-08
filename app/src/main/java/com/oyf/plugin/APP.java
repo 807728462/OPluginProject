@@ -6,7 +6,8 @@ import android.content.res.Resources;
 
 import com.oyf.plugin.manager.HookManager;
 import com.oyf.plugin.manager.LoadedApkManager;
-import com.oyf.plugin.manager.PluginManager;
+import com.oyf.pluginlibs.PluginManager;
+import com.oyf.pluginlibs.PluginTypeEnum;
 
 /**
  * @创建者 oyf
@@ -33,10 +34,14 @@ public class APP extends Application {
             mAssetManager = HookManager.getInstance().loadPluginAssetManager(mPluginApkPath);
             mResources = HookManager.getInstance().loadPluginResource(this, mAssetManager);*/
 
-            mResources = HookManager.getInstance().loadPluginResource(this, mAssetManager);
+           /* mResources = HookManager.getInstance().loadPluginResource(this, mAssetManager);
             LoadedApkManager.getInstance().hookAMS(this);
             LoadedApkManager.getInstance().hookHandler();
-            LoadedApkManager.getInstance().hookLoadedApk(this, mPluginApkPath);
+            LoadedApkManager.getInstance().hookLoadedApk(this, mPluginApkPath);*/
+
+            PluginManager.getInstance().init(this, PluginTypeEnum.LOADEDAPK_PLUGIN);
+            mAssetManager = PluginManager.getInstance().getAssetManager();
+            mResources = PluginManager.getInstance().getResources();
         } catch (Exception e) {
             e.printStackTrace();
         }

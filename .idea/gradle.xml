@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/pluginapk" />
             <option value="$PROJECT_DIR$/plugininterface" />
+            <option value="$PROJECT_DIR$/pluginlibs" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -1,4 +1,4 @@
-package com.oyf.plugininterface;
+package com.oyf.pluginlibs;
 
 import android.content.Context;
 import android.os.Environment;

@@ -1,4 +1,4 @@
-package com.oyf.plugin.manager;
+package com.oyf.pluginlibs;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.util.Log;
 
-import com.oyf.plugininterface.OPathUtils;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -22,21 +21,21 @@ import dalvik.system.DexClassLoader;
 /**
  * @创建者 oyf
  * @创建时间 2020/3/24 11:28
- * @描述  使用代理式插件化
+ * @描述 使用代理式插件化
  **/
-public class PluginManager {
-    private final static String TAG = PluginManager.class.getSimpleName();
+public class PluginProxyManager {
+    private final static String TAG = PluginProxyManager.class.getSimpleName();
 
-    private static PluginManager instance;
+    private static PluginProxyManager instance;
 
-    private PluginManager() {
+    private PluginProxyManager() {
         mDexClassLoaderMap = new HashMap<>();
         mResourcesMap = new HashMap<>();
     }
 
-    public static PluginManager getInstance() {
+    public static PluginProxyManager getInstance() {
         if (null == instance) {
-            instance = new PluginManager();
+            instance = new PluginProxyManager();
         }
         return instance;
     }

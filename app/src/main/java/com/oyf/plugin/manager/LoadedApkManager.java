@@ -15,10 +15,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.oyf.plugin.proxy.ProxyActivity;
-import com.oyf.plugininterface.OPathUtils;
+import com.oyf.pluginlibs.OPathUtils;
 
 import java.io.File;
-import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

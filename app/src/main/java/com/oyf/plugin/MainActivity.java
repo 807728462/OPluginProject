@@ -9,12 +9,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.oyf.plugin.manager.HookManager;
-import com.oyf.plugin.manager.PluginManager;
 import com.oyf.plugin.proxy.ProxyActivity;
 import com.oyf.plugin.proxy.ProxyService;
-import com.oyf.plugininterface.OPathUtils;
 import com.oyf.plugininterface.utils.ArouterUtils;
+import com.oyf.pluginlibs.OPathUtils;
 
 import java.io.File;
 
@@ -61,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadPlugin(View view) {
         //PluginManager.getInstance().loadApk(this, mPluginApkPath);
-
     }
 
     public void startPluginActivity(View view) {
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startTest(View view) {
-        Intent intent = new Intent(this, TestActivity.class);
+        Intent intent = new Intent(this, ProxyActivity.class);
         startActivity(intent);
     }
 

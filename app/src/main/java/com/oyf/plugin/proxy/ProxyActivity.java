@@ -1,17 +1,17 @@
 package com.oyf.plugin.proxy;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.oyf.plugin.manager.PluginManager;
-import com.oyf.plugininterface.utils.ArouterUtils;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.oyf.plugininterface.core.ActivityInterface;
+import com.oyf.plugininterface.utils.ArouterUtils;
+import com.oyf.pluginlibs.PluginManager;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ import java.util.Set;
  * @创建时间 2020/3/24 14:06
  * @描述 代理activity
  **/
-public class ProxyActivity extends Activity {
+public class ProxyActivity extends AppCompatActivity {
 
     private String mApkName = "";
     private String mClassName = "";
@@ -57,7 +57,7 @@ public class ProxyActivity extends Activity {
             Class<?> contextThemeWrapperClass = Class.forName("android.view.ContextThemeWrapper");
             Field mResourcesField = contextThemeWrapperClass.getDeclaredField("mResources");
             mResourcesField.setAccessible(true);
-            mResourcesField.set(this, PluginManager.getInstance().getResources(mApkName));
+            mResourcesField.set(this, PluginManager.getInstance().getResources());
         } catch (Exception e) {
             e.printStackTrace();
         }

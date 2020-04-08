@@ -8,7 +8,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.oyf.plugin.manager.PluginManager;
+import com.oyf.pluginlibs.PluginManager;
+import com.oyf.pluginlibs.PluginProxyManager;
 import com.oyf.plugininterface.utils.ArouterUtils;
 import com.oyf.plugininterface.core.ServiceInterface;
 

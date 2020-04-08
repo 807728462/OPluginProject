@@ -4,7 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.oyf.plugin.manager.PluginManager;
+import com.oyf.pluginlibs.PluginManager;
+import com.oyf.pluginlibs.PluginProxyManager;
 import com.oyf.plugininterface.core.BroadcastInterface;
 
 /**

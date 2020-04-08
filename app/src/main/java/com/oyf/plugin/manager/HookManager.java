@@ -1,6 +1,5 @@
 package com.oyf.plugin.manager;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +12,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.oyf.plugin.proxy.ProxyActivity;
-import com.oyf.plugininterface.OPathUtils;
+import com.oyf.pluginlibs.OPathUtils;
 
 import java.io.File;
 import java.lang.reflect.Array;
